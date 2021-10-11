@@ -64,6 +64,7 @@ namespace Graficas
 			{
 				IsKeyPressed(keycodes[index]);
 				active = keyPresses[keycodes[index]] > 0 ? active : false;
+				if (!active) break;
 			}
 			return active;
 		}
