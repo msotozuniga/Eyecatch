@@ -1,13 +1,11 @@
 ﻿#pragma once
-#ifndef INPUT_HPP
-#define INPUT_HPP
+#ifndef INPUT
+#define INPUT
 #include <glm/glm.hpp>
 #include <memory>
 
-namespace Mona
+namespace Graficas
 {
-	class World;
-	class EventManager;
 	/*
 	* La clase Input provee una interfaz que permite al usuario hacer consultas sobre distintos dispositivos(teclado y mouse).
 	* El motor internamente usa los metodos privados para actualizar cuando corresponda el estado de esta clase.
@@ -34,7 +32,7 @@ namespace Mona
 		*/
 		bool IsMouseButtonPressed(int button) const noexcept;
 		/*
-		* Retorna un vector de dos dimensiones con la posici�n en pixeles del mouse.
+		* Retorna un vector de dos dimensiones con la posicion en pixeles del mouse.
 		* La posicion (0,0) corresponde a la esquina superior izquierda.
 		*/
 		glm::dvec2 GetMousePosition() const noexcept;
@@ -47,14 +45,23 @@ namespace Mona
 		* Ajusta el tipo de cursor al tipo entregado
 		*/
 		void SetCursorType(CursorType type) noexcept;
+
+		
+
+		/*
+		* Retorna verdadero si la combinacion de botones representada por chordcode esta siendo presionada en este momento.
+		*/
+		bool IsChordActive(int* keycodes) noexcept;
+
+
 	private:
 
 		/*
 		* Funcion llamada cada iteracion del motor para actualizar el estado de los eventos de input
 		*/
 		void Update() noexcept;
-		void StartUp(EventManager& eventManager) noexcept;
-		void ShutDown(EventManager& eventManager) noexcept;
+		void StartUp() noexcept;
+		void ShutDown() noexcept;
 		class InputImplementation;
 		std::unique_ptr<InputImplementation> p_Impl;
 	};
