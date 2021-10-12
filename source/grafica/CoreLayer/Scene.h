@@ -2,6 +2,7 @@
 #ifndef SCENE
 #define SCENE
 #include "../CoreLayer/Input.h"
+#include "../App.h"
 #include <memory>
 #include <array>
 #include <filesystem>
@@ -18,15 +19,17 @@ namespace Graficas {
 		Scene& operator=(const Scene& scene) = delete;
 
 		Input& GetInput() noexcept;
+		void SetTargetFPS(float target);
 
 	private:
-		Scene(Application& app);
+		Scene(App& app);
 		~Scene();
 		void StartLoop() noexcept;
 		void Update(float timeStep) noexcept;
 
 		Input m_input;
-		Application& m_application;
+		App& m_application;
+		float targetFps;
 	};
 
 }

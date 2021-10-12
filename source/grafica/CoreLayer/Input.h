@@ -54,14 +54,16 @@ namespace Graficas
 		bool IsChordActive(int* keycodes) noexcept;
 
 
-	private:
-
+	
+	
 		/*
 		* Funcion llamada cada iteracion del motor para actualizar el estado de los eventos de input
 		*/
 		void Update() noexcept;
 		void StartUp() noexcept;
 		void ShutDown() noexcept;
+
+	private:
 		class InputImplementation;
 		std::unique_ptr<InputImplementation> p_Impl;
 	};

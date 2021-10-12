@@ -1,9 +1,15 @@
+#ifdef _WIN32
+#include <Windows.h>
+#else
+#include <unistd.h>
+#endif
 #include "Scene.h"
 #include <chrono>
 namespace Graficas {
 
-	Scene::Scene(Application& app) :
-		m_input()
+	Scene::Scene(App& app) :
+		m_input(),
+		m_application(app)
 	{
 
 		m_input.StartUp();
@@ -23,6 +29,11 @@ namespace Graficas {
 		return m_input;
 	}
 
+	void Scene::SetTargetFPS(float target)
+	{
+		targetFps = 1 / target;
+	}
+
 
 	void Scene::StartLoop() noexcept {
 		std::chrono::time_point<std::chrono::steady_clock> startTime = std::chrono::steady_clock::now();
@@ -34,6 +45,9 @@ namespace Graficas {
 			startTime = newTime;
 			float timeStep = std::chrono::duration_cast<std::chrono::duration<float>>(frameTime).count();
 			Update(timeStep);
+			std::chrono::time_point<std::chrono::steady_clock> renderTime = std::chrono::steady_clock::now();
+			auto elapsedTime = std::chrono::duration_cast<std::chrono::duration<float>>(renderTime-startTime).count();
+			if (elapsedTime < targetFps) Sleep((targetFps - elapsedTime)*1000);
 		}
 
 	}
