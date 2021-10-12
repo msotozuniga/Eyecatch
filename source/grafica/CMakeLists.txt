@@ -1,24 +1,15 @@
 set(GRAFICA_HEADERS 
-		basic_shapes.h
-		easy_shaders.h
-		gpu_shape.h
-		load_shaders.h
-		performance_monitor.h
-		scene_graph.h
-		shape.h
-		simple_eigen.h
-		transformations.h
-		simple_timer.h
+		App.h
+		CoreLayer/Input.h
+		CoreLayer/Keycodes.h
+		CoreLayer/Scene.h
+		CoreLayer/Window.h
 		)
 set(GRAFICA_SOURCES
-		basic_shapes.cpp
-		easy_shaders.cpp
-		gpu_shape.cpp
-		load_shaders.cpp
-		performance_monitor.cpp
-		scene_graph.cpp
-		shape.cpp
-		transformations.cpp
+		App.cpp
+		CoreLayer/Input.cpp
+		CoreLayer/Scene.cpp
+		CoreLayer/Window.cpp
 		)
 
 add_library(grafica STATIC ${GRAFICA_SOURCES} ${GRAFICA_HEADERS} grafica.h ${Shaders})

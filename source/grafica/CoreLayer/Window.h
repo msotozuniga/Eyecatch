@@ -52,10 +52,12 @@ namespace Graficas
 		*
 		*/
 		void SetWindowDimensions(const glm::ivec2& dimensions) noexcept;
-	private:
+	
 		void StartUp() noexcept;
 		void ShutDown() noexcept;
 		void Update() noexcept;
+
+	private:
 		class WindowImplementation;
 		std::unique_ptr<WindowImplementation> p_Impl;
 	};

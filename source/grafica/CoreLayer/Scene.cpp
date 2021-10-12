@@ -11,7 +11,7 @@ namespace Graficas {
 		m_input(),
 		m_application(app)
 	{
-
+		m_window.StartUp();
 		m_input.StartUp();
 		m_application.StartUp(*this);
 
@@ -27,6 +27,11 @@ namespace Graficas {
 
 	Input& Scene::GetInput() noexcept {
 		return m_input;
+	}
+
+	Window& Scene::GetWindow() noexcept
+	{
+		return m_window;
 	}
 
 	void Scene::SetTargetFPS(float target)
@@ -54,7 +59,9 @@ namespace Graficas {
 
 	void Scene::Update(float timeStep) noexcept
 	{
+		
 		m_input.Update();
+		m_window.Update();
 	}
 
 }
