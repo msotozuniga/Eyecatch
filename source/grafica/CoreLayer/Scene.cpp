@@ -44,7 +44,7 @@ namespace Graficas {
 			const auto frameTime = newTime - startTime;
 			startTime = newTime;
 			float timeStep = std::chrono::duration_cast<std::chrono::duration<float>>(frameTime).count();
-			Update(timeStep);
+			timeStep > 1 ? Update(targetFps) : Update(timeStep);
 			std::chrono::time_point<std::chrono::steady_clock> renderTime = std::chrono::steady_clock::now();
 			auto elapsedTime = std::chrono::duration_cast<std::chrono::duration<float>>(renderTime-startTime).count();
 			if (elapsedTime < targetFps) Sleep((targetFps - elapsedTime)*1000);
